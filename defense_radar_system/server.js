@@ -1833,6 +1833,100 @@ app.get('/api/benchmark/history', (req, res) => {
   res.json(benchmarkRunner.getHistory());
 });
 
+// =========================================================================
+// Q-SENTINEL: QUANTUM OPTIMIZATION REST APIS (Q-HACK INDIA 2026)
+// =========================================================================
+const { spawn } = require('child_process');
+let latestQuantumResult = null;
+
+// Helper to run python quantum bridge
+function executeQuantumBridge(options = {}) {
+  return new Promise((resolve, reject) => {
+    const pythonPath = process.env.PYTHON_PATH || 'python';
+    const bridgePath = path.join(__dirname, '..', 'quantum_extension', 'bridge.py');
+    const args = [
+      bridgePath,
+      '--mode', options.mode || 'both',
+      '--p_layers', String(options.p_layers || 1),
+      '--shots', String(options.shots || 1000),
+      '--maxiter', String(options.maxiter || 25),
+      '--seed', String(options.seed || 42)
+    ];
+
+    const pyProc = spawn(pythonPath, args);
+    let stdoutData = '';
+    let stderrData = '';
+
+    pyProc.stdout.on('data', (chunk) => { stdoutData += chunk.toString(); });
+    pyProc.stderr.on('data', (chunk) => { stderrData += chunk.toString(); });
+
+    pyProc.on('close', (code) => {
+      if (code === 0) {
+        try {
+          const parsed = JSON.parse(stdoutData);
+          resolve(parsed);
+        } catch (e) {
+          reject(new Error(`Failed to parse quantum bridge JSON output: ${e.message}`));
+        }
+      } else {
+        reject(new Error(`Quantum bridge exited with code ${code}: ${stderrData || stdoutData}`));
+      }
+    });
+
+    pyProc.on('error', (err) => {
+      reject(err);
+    });
+  });
+}
+
+app.get('/api/quantum/latest', (req, res) => {
+  if (latestQuantumResult) {
+    res.json(latestQuantumResult);
+  } else {
+    // If not executed yet, provide initial cached demo payload
+    const resultsJsonPath = path.join(__dirname, '..', 'quantum_extension', 'results', 'experiment_results.json');
+    if (fs.existsSync(resultsJsonPath)) {
+      try {
+        const cached = JSON.parse(fs.readFileSync(resultsJsonPath, 'utf8'));
+        res.json({ cached: true, ...cached });
+      } catch (e) {
+        res.json({ status: 'NO_EXPERIMENT_RUN_YET' });
+      }
+    } else {
+      res.json({ status: 'NO_EXPERIMENT_RUN_YET' });
+    }
+  }
+});
+
+app.post('/api/quantum/run', async (req, res) => {
+  try {
+    const mode = req.body.mode || 'both';
+    const p_layers = Number(req.body.p_layers) || 1;
+    const shots = Number(req.body.shots) || 1000;
+    const maxiter = Number(req.body.maxiter) || 25;
+    const seed = Number(req.body.seed) || 42;
+
+    const result = await executeQuantumBridge({ mode, p_layers, shots, maxiter, seed });
+    latestQuantumResult = result;
+    res.json({ success: true, result });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      error: error.message,
+      hint: 'Ensure Python with qiskit, numpy, scipy is installed and available in PATH.'
+    });
+  }
+});
+
+app.get('/api/quantum/export/json', (req, res) => {
+  if (!latestQuantumResult) {
+    return res.status(404).json({ error: 'No quantum experiment available to export.' });
+  }
+  res.setHeader('Content-Type', 'application/json');
+  res.setHeader('Content-Disposition', 'attachment; filename="Q-SENTINEL-EXPERIMENT.json"');
+  res.send(JSON.stringify(latestQuantumResult, null, 2));
+});
+
 if (require.main === module) {
   server.listen(PORT, () => {
     console.log(`\x1b[36m=================================================================\x1b[0m`);

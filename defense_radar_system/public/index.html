@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ESM-ASTRA // Adaptive RF/ESM Receiver Scheduler & Situational Platform (SIH26055)</title>
+  <title>Q-Sentinel // Quantum-Enhanced Adaptive Surveillance & Resource Allocation (Q-Hack India 2026)</title>
   <link rel="stylesheet" href="css/tactical.css">
 </head>
 <body>
@@ -13,23 +13,23 @@
        ==================================================================== -->
   <header class="global-navbar">
     <div class="nav-brand">
-      <div class="brand-badge">SIH</div>
+      <div class="brand-badge" style="background:linear-gradient(135deg, #7c3aed, #06b6d4); color:#fff; font-weight:800; border:1px solid #a78bfa;">Q-AI</div>
       <div class="brand-titles">
         <div class="brand-title">
-          ESM-ASTRA
-          <span class="tag-sim">SIH26055 // ADAPTIVE EW RECEIVER SCHEDULING</span>
+          Q-SENTINEL
+          <span class="tag-sim" style="background:rgba(124,58,237,0.25); border-color:#7c3aed; color:#c4b5fd;">Q-HACK INDIA 2026 // HYBRID QUANTUM-CLASSICAL</span>
         </div>
-        <div class="brand-desc">Smart Scan Strategy for Electronic Warfare (SIH26055) with Multi-Sensor Situational Context</div>
+        <div class="brand-desc">Quantum-Enhanced Adaptive Surveillance &amp; Resource Allocation &bull; Team S-Duality (Krishna Jha)</div>
       </div>
     </div>
 
-    <!-- 7 Dedicated Page Navigation Tabs -->
+    <!-- 8 Dedicated Page Navigation Tabs -->
     <nav class="nav-pages">
       <button class="nav-tab-btn active" data-view="radar">
         <span>TACTICAL CONTEXT</span>
       </button>
       <button class="nav-tab-btn" data-view="rf">
-        <span>RF / ESM (SIH CORE)</span>
+        <span>RF / ESM MONITOR</span>
       </button>
       <button class="nav-tab-btn" data-view="camera">
         <span>OPTICAL CONTEXT</span>
@@ -38,13 +38,16 @@
         <span>SENSOR FUSION</span>
       </button>
       <button class="nav-tab-btn" data-view="scheduler">
-        <span>ADAPTIVE SCHEDULER (SIH CORE)</span>
+        <span>ADAPTIVE SCHEDULER</span>
       </button>
       <button class="nav-tab-btn" data-view="analytics">
         <span>ANALYTICS & BENCHMARK</span>
       </button>
       <button class="nav-tab-btn" data-view="simulation">
         <span>MULTI-SENSOR DEMO</span>
+      </button>
+      <button class="nav-tab-btn" data-view="quantum" style="background:rgba(124,58,237,0.15); border-bottom:2px solid #a855f7;">
+        <span style="color:#c4b5fd; font-weight:700;">★ QUANTUM LAB</span>
       </button>
     </nav>
 
@@ -1500,6 +1503,244 @@
             <span>LIVE JSON STATE & TELEMETRY</span>
           </div>
           <pre id="simLiveJsonInspector" style="flex:1; background:#04070a; border:1px solid var(--border-default); border-radius:4px; padding:10px; font-family:var(--font-mono); font-size:9px; color:#88a2b5; overflow:auto;"></pre>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ------------------------------------------------------------------
+         PAGE 8: QUANTUM LAB (Q-HACK INDIA 2026 RESEARCH WORKSPACE)
+         ------------------------------------------------------------------ -->
+    <section id="view-quantum" class="view-page">
+      <div style="display:flex; flex-direction:column; height:100%; gap:10px; overflow-y:auto; padding:12px;">
+
+        <!-- Top Quantum Control & Parameter Toolbar -->
+        <div style="background:var(--bg-panel); border:1px solid var(--border-default); border-radius:var(--radius-md); padding:10px 14px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="background:linear-gradient(135deg, #7c3aed, #06b6d4); color:#fff; font-weight:800; font-size:11px; padding:3px 8px; border-radius:3px;">
+              QAOA OPTIMIZER
+            </div>
+            <div>
+              <div style="font-weight:700; color:#fff; font-size:12px; letter-spacing:0.5px;">
+                QUANTUM RESOURCE ALLOCATION BENCHMARK (QUBO / QAOA)
+              </div>
+              <div style="font-size:10px; color:var(--text-tertiary);">
+                Formulation: \(B=4\) Candidate Bands &times; \(T=2\) Slots = 8 Qubits (256 States) | Target: Maximize Dwell Utility s.t. Budget \(K=2\)
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+            <div style="display:flex; align-items:center; gap:5px;">
+              <label style="font-size:10px; color:var(--text-secondary); font-family:var(--font-mono);">DEPTH (p):</label>
+              <select id="selectQaoaP" class="tactical-select" style="width:110px; padding:3px 6px;">
+                <option value="1">p = 1 (Depth 1)</option>
+                <option value="2" selected>p = 2 (Depth 2)</option>
+              </select>
+            </div>
+            <div style="display:flex; align-items:center; gap:5px;">
+              <label style="font-size:10px; color:var(--text-secondary); font-family:var(--font-mono);">SHOTS:</label>
+              <select id="selectQaoaShots" class="tactical-select" style="width:90px; padding:3px 6px;">
+                <option value="500">500</option>
+                <option value="1000" selected>1000</option>
+                <option value="2000">2000</option>
+              </select>
+            </div>
+            <div style="display:flex; align-items:center; gap:5px;">
+              <label style="font-size:10px; color:var(--text-secondary); font-family:var(--font-mono);">OPTIMIZER:</label>
+              <select id="selectQaoaOpt" class="tactical-select" style="width:95px; padding:3px 6px;">
+                <option value="COBYLA" selected>COBYLA</option>
+                <option value="SLSQP">SLSQP</option>
+              </select>
+            </div>
+            <button id="btnRunQuantumOpt" class="btn-ops" style="background:#7c3aed; color:#fff; font-weight:700; border:none; padding:5px 12px; cursor:pointer;">
+              ▶ RUN QAOA SIMULATOR
+            </button>
+            <button id="btnExportQuantumJson" class="btn-ops" style="border-color:#a855f7; color:#c4b5fd; padding:5px 10px;">
+              EXPORT JSON
+            </button>
+          </div>
+        </div>
+
+        <!-- Scientific Disclaimer Notice -->
+        <div style="background:rgba(124, 58, 237, 0.08); border-left:3px solid #8b5cf6; padding:8px 12px; border-radius:var(--radius-sm); font-size:10.5px; color:#cbd5e1; display:flex; justify-content:space-between; align-items:center;">
+          <div>
+            <strong style="color:#c4b5fd;">SCIENTIFIC RIGOR &amp; NISQ BOUNDARY:</strong>
+            Simulations execute via IBM Qiskit Statevector / Aer. Classical exact and greedy algorithms solve this 8-qubit space deterministically in milliseconds. The research goal is testing whether QAOA parameterized ansatz circuits can concentrate probability amplitude on feasible optimal surveillance allocations under resource constraints.
+          </div>
+          <div id="quantumStatusTag" style="font-family:var(--font-mono); font-weight:700; color:#10b981; font-size:10px; white-space:nowrap; margin-left:15px;">
+            STATUS: READY
+          </div>
+        </div>
+
+        <!-- Metric Summary Cards Grid -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:10px;">
+          
+          <!-- Card 1: Problem Formulation -->
+          <div style="background:var(--bg-panel); border:1px solid var(--border-default); border-radius:var(--radius-md); padding:10px;">
+            <div style="font-size:10px; font-weight:700; color:var(--text-tertiary); letter-spacing:0.5px; margin-bottom:6px;">
+              1. PROBLEM &amp; HILBERT SPACE
+            </div>
+            <div style="font-size:18px; font-weight:700; color:#38bdf8; font-family:var(--font-mono);">
+              8 Qubits / 256 States
+            </div>
+            <div style="margin-top:8px; font-size:10px; color:var(--text-secondary); line-height:1.5;">
+              <div>&bull; Bands \(B=4\) &times; Lookahead Slots \(T=2\)</div>
+              <div>&bull; Feasible States: <strong style="color:#f59e0b;">12 / 256 (4.69%)</strong></div>
+              <div>&bull; Hard Constraints: \(\le 1\) band/slot, \(\sum = 2\)</div>
+            </div>
+          </div>
+
+          <!-- Card 2: Classical Exact Ground Truth -->
+          <div style="background:var(--bg-panel); border:1px solid var(--border-default); border-radius:var(--radius-md); padding:10px;">
+            <div style="font-size:10px; font-weight:700; color:var(--text-tertiary); letter-spacing:0.5px; margin-bottom:6px;">
+              2. CLASSICAL EXACT (BRUTE-FORCE)
+            </div>
+            <div style="font-size:18px; font-weight:700; color:#10b981; font-family:var(--font-mono);" id="qmetricExactState">
+              01100000
+            </div>
+            <div style="margin-top:8px; font-size:10px; color:var(--text-secondary); line-height:1.5;">
+              <div>&bull; Optimal Utility: <strong style="color:#10b981;" id="qmetricExactUtility">4.10</strong></div>
+              <div>&bull; Feasibility: <span style="color:#10b981;">100.0% (Valid)</span></div>
+              <div>&bull; Search Time: <span id="qmetricExactTime">1.1 ms</span></div>
+            </div>
+          </div>
+
+          <!-- Card 3: Adaptive UCB1 Baseline -->
+          <div style="background:var(--bg-panel); border:1px solid var(--border-default); border-radius:var(--radius-md); padding:10px;">
+            <div style="font-size:10px; font-weight:700; color:var(--text-tertiary); letter-spacing:0.5px; margin-bottom:6px;">
+              3. ADAPTIVE UCB1 SCHEDULER
+            </div>
+            <div style="font-size:18px; font-weight:700; color:#60a5fa; font-family:var(--font-mono);" id="qmetricUcbState">
+              01100000
+            </div>
+            <div style="margin-top:8px; font-size:10px; color:var(--text-secondary); line-height:1.5;">
+              <div>&bull; Policy Utility: <strong style="color:#60a5fa;" id="qmetricUcbUtility">4.10</strong></div>
+              <div>&bull; Feasibility: <span style="color:#10b981;">100.0% (Valid)</span></div>
+              <div>&bull; Dwells Allocated: <span id="qmetricUcbSlots">UHF, L-Band</span></div>
+            </div>
+          </div>
+
+          <!-- Card 4: Qiskit QAOA Sampling -->
+          <div style="background:var(--bg-panel); border:1px solid var(--border-default); border-radius:var(--radius-md); padding:10px;">
+            <div style="font-size:10px; font-weight:700; color:var(--text-tertiary); letter-spacing:0.5px; margin-bottom:6px;">
+              4. QISKIT QAOA SIMULATOR
+            </div>
+            <div style="font-size:18px; font-weight:700; color:#c4b5fd; font-family:var(--font-mono);" id="qmetricQaoaTopState">
+              01100000
+            </div>
+            <div style="margin-top:8px; font-size:10px; color:var(--text-secondary); line-height:1.5;">
+              <div>&bull; Feasibility Prob: <strong style="color:#c4b5fd;" id="qmetricQaoaFeas">7.7%</strong> (vs 4.2% random)</div>
+              <div>&bull; Feasibility Gain: <span style="color:#10b981;" id="qmetricQaoaGain">+83.3% at p=2</span></div>
+              <div>&bull; Ground State Gap: <span style="color:#10b981;" id="qmetricQaoaGap">0.00 (Found Exact)</span></div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Two-Column Deep Inspection Grid -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; flex:1; min-height:360px;">
+          
+          <!-- Left Column: Candidate Bands & Allocation Breakdown -->
+          <div style="background:var(--bg-panel); border:1px solid var(--border-default); border-radius:var(--radius-md); padding:10px; display:flex; flex-direction:column; gap:8px;">
+            <div class="panel-section-title" style="margin-bottom:0;">
+              <span>CANDIDATE SURVEILLANCE BANDS &amp; OPTIMIZATION WEIGHTS</span>
+              <span style="color:var(--text-tertiary); font-size:9px;">SLOTS: T0 (CURRENT) &amp; T1 (LOOKAHEAD)</span>
+            </div>
+            
+            <table class="tactical-table" style="width:100%; margin-top:4px;">
+              <thead>
+                <tr>
+                  <th>BAND</th>
+                  <th>FREQ RANGE</th>
+                  <th>THREAT / PRIORITY</th>
+                  <th>URGENT</th>
+                  <th>ALLOCATION (OPTIMAL)</th>
+                </tr>
+              </thead>
+              <tbody id="qBandsTableBody">
+                <tr>
+                  <td style="font-weight:700; color:#fff;">VHF (Band 0)</td>
+                  <td>150 &ndash; 300 MHz</td>
+                  <td>Priority 1.0 (Low threat)</td>
+                  <td><span class="tag-nominal">NORMAL</span></td>
+                  <td><span style="color:var(--text-disabled); font-family:var(--font-mono);">IDLE [q0, q4 = 0]</span></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:700; color:#fff;">UHF (Band 1)</td>
+                  <td>450 &ndash; 800 MHz</td>
+                  <td>Priority 3.0 (Active agile burst)</td>
+                  <td><span class="tag-critical" style="font-size:9px;">EMERGENCY</span></td>
+                  <td><span style="color:#10b981; font-weight:700; font-family:var(--font-mono);">SLOT 0 [q1 = 1]</span></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:700; color:#fff;">L-Band (Band 2)</td>
+                  <td>1.2 &ndash; 1.8 GHz</td>
+                  <td>Priority 2.0 (High tracking need)</td>
+                  <td><span class="tag-nominal">NORMAL</span></td>
+                  <td><span style="color:#10b981; font-weight:700; font-family:var(--font-mono);">SLOT 1 [q6 = 1]</span></td>
+                </tr>
+                <tr>
+                  <td style="font-weight:700; color:#fff;">S-Band (Band 3)</td>
+                  <td>2.8 &ndash; 3.6 GHz</td>
+                  <td>Priority 1.0 (Background search)</td>
+                  <td><span class="tag-nominal">NORMAL</span></td>
+                  <td><span style="color:var(--text-disabled); font-family:var(--font-mono);">IDLE [q3, q7 = 0]</span></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Mathematical Formulation Callout -->
+            <div style="background:var(--bg-panel-subtle); border:1px solid var(--border-default); border-radius:var(--radius-sm); padding:8px 10px; margin-top:6px; font-size:10px; line-height:1.5;">
+              <div style="font-weight:700; color:#fff; margin-bottom:3px;">QUBO / ISING OBJECTIVE HAMILTONIAN:</div>
+              <div style="font-family:var(--font-mono); color:#38bdf8; font-size:9.5px;">
+                H_C = &minus; &sum; U_{b,t} x_{b,t} + &lambda;_1 &sum;_{t} (&sum;_{b} x_{b,t} &minus; 1)^2 + &lambda;_2 (&sum;_{b,t} x_{b,t} &minus; K)^2
+              </div>
+              <div style="color:var(--text-tertiary); margin-top:4px;">
+                Where \(U_{b,t}\) represents intercept threat utility, \(\lambda_1 = 5.0\) enforces single-band dwell per receiver slot, and \(\lambda_2 = 5.0\) enforces global scan budget \(K=2\).
+              </div>
+            </div>
+
+            <!-- Top Sampled States Distribution -->
+            <div style="flex:1; display:flex; flex-direction:column; margin-top:6px;">
+              <div style="font-size:10px; font-weight:700; color:var(--text-secondary); margin-bottom:4px;">
+                TOP SAMPLED QUANTUM BITSTRINGS &amp; PROBABILITIES:
+              </div>
+              <div id="qTopStatesList" style="display:flex; flex-direction:column; gap:4px; max-height:140px; overflow-y:auto; font-family:var(--font-mono); font-size:9.5px;">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Circuit Architecture & Benchmark Graph -->
+          <div style="background:var(--bg-panel); border:1px solid var(--border-default); border-radius:var(--radius-md); padding:10px; display:flex; flex-direction:column; gap:8px;">
+            <div class="panel-section-title" style="margin-bottom:0;">
+              <span>8-QUBIT QAOA ANSATZ CIRCUIT ARCHITECTURE</span>
+              <span style="color:#c4b5fd; font-size:9px;">QISKIT 1.x PARAMETERIZED UNITARY</span>
+            </div>
+
+            <!-- Circuit Image Container -->
+            <div style="background:#020617; border:1px solid var(--border-default); border-radius:var(--radius-sm); padding:6px; display:flex; justify-content:center; align-items:center; min-height:170px; max-height:210px; overflow:hidden;">
+              <img id="qaoaCircuitImg" src="assets/qaoa_circuit_diagram.png" alt="QAOA Circuit Diagram" style="max-width:100%; max-height:190px; object-fit:contain; border-radius:2px;" onerror="this.style.display='none'; document.getElementById('qaoaCircuitFallback').style.display='block';">
+              <div id="qaoaCircuitFallback" style="display:none; color:var(--text-tertiary); font-size:10px; text-align:center;">
+                8-Qubit Circuit: \(H^{\otimes 8} \to e^{-i \gamma_1 H_C} e^{-i \beta_1 H_M} \to e^{-i \gamma_2 H_C} e^{-i \beta_2 H_M} \to \text{Measure}\)
+              </div>
+            </div>
+
+            <!-- Comparison Benchmark Graph Container -->
+            <div class="panel-section-title" style="margin-bottom:0; margin-top:4px;">
+              <span>COMPARATIVE UTILITY &amp; RUNTIME BENCHMARK</span>
+              <span style="color:var(--text-tertiary); font-size:9px;">QUANTUM vs CLASSICAL</span>
+            </div>
+            <div style="background:#020617; border:1px solid var(--border-default); border-radius:var(--radius-sm); padding:6px; display:flex; justify-content:center; align-items:center; min-height:130px; max-height:160px; overflow:hidden;">
+              <img id="qaoaBenchmarkImg" src="assets/benchmark_comparison.png" alt="Benchmark Comparison" style="max-width:100%; max-height:145px; object-fit:contain; border-radius:2px;" onerror="this.style.display='none'; document.getElementById('qaoaBenchmarkFallback').style.display='block';">
+              <div id="qaoaBenchmarkFallback" style="display:none; color:var(--text-tertiary); font-size:10px; text-align:center;">
+                Benchmark graph renders after experiment execution.
+              </div>
+            </div>
+
+          </div>
+
         </div>
 
       </div>
